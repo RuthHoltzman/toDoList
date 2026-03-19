@@ -14,3 +14,15 @@ build/
 # General
 .DS_Store
 *.mwb.bak
+
+# Visual Studio files
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider / JetBrains
+.idea/
+
+# Windows
+Thumbs.db
