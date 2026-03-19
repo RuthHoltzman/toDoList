@@ -17,9 +17,10 @@ public partial class ToDoDbContext : DbContext
 
     public virtual DbSet<Item> Items { get; set; }
     public DbSet<User> Users { get; set; }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseMySql("name=todolist", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.44-mysql"));
-
+   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        // משאירים ריק! ההגדרה תתבצע ב-Program.cs
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder

@@ -26,3 +26,5 @@ build/
 
 # Windows
 Thumbs.db
+
+.env

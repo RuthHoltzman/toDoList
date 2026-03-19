@@ -9,7 +9,15 @@ var key = Encoding.ASCII.GetBytes("YourSuperSecretKeyThatIsAtLeast32CharsLong!")
 
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<ToDoDbContext>();
+// 1. שליפת הכתובת מהגדרות המערכת (Render או appsettings)
+var connectionString = builder.Configuration["todolist"];
+
+// 2. הגדרת ה-Database עם הכתובת שמצאנו
+builder.Services.AddDbContext<ToDoDbContext>(options =>
+{
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAuthentication(options =>
