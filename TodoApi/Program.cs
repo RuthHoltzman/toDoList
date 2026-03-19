@@ -55,6 +55,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+app.UseDeveloperExceptionPage(); // להוסיף את זה! זה יראה לנו את השגיאה האמיתית בדפדפן
 app.UseCors("AllowAll");
 app.UseAuthentication(); // מי את?
 app.UseAuthorization();  // מה מותר לך לעשות?

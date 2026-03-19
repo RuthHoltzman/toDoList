@@ -39,6 +39,14 @@ public partial class ToDoDbContext : DbContext
                 .HasMaxLength(45)
                 .HasColumnName("name");
         });
+    // להוסיף את החלק הזה עבור המשתמשים:
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.ToTable("users"); // וידוא שהשם קטן בדיוק כמו ב-PHPMyAdmin
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Username).HasColumnName("username");
+            entity.Property(e => e.Password).HasColumnName("password");
+        });
 
         OnModelCreatingPartial(modelBuilder);
     }
