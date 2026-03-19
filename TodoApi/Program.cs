@@ -9,10 +9,17 @@ var key = Encoding.ASCII.GetBytes("YourSuperSecretKeyThatIsAtLeast32CharsLong!")
 
 
 var builder = WebApplication.CreateBuilder(args);
-// 1. שליפת הכתובת מהגדרות המערכת (Render או appsettings)
+
+// 1. שליפת המחרוזת מההגדרות
 var connectionString = builder.Configuration["todolist"];
 
-// 2. הגדרת ה-Database עם הכתובת שמצאנו
+// 2. בדיקה שהיא לא ריקה - אם היא ריקה השרת ייעצר עם שגיאה ברורה בלוגים
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new Exception("CRITICAL ERROR: Connection string 'todolist' not found in configuration!");
+}
+
+// 3. הגדרת ה-Database (פעם אחת בלבד!)
 builder.Services.AddDbContext<ToDoDbContext>(options =>
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
