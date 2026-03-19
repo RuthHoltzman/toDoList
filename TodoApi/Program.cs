@@ -134,10 +134,9 @@ app.MapPost("/register", (User newUser, ToDoDbContext db) =>
     return Results.Ok("User created successfully");
 });
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.MapGet("/", () => "hello, it works!");
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.Run();
