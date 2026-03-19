@@ -1,7 +1,7 @@
 import axios from "axios";
 import { jwtDecode } from 'jwt-decode'; // ודאי שהרצת npm install jwt-decode
 
-axios.defaults.baseURL = "http://localhost:5086";
+axios.defaults.baseURL = "https://todolist-ikez.onrender.com";
 
 // 1. Interceptor שמוסיף את הטוקן לכל בקשה שיוצאת לשרת
 axios.interceptors.request.use(config => {
