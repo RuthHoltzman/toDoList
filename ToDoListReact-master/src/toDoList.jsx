@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import service from './service';
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert2';
 
 function TodoList() {
   const [newTodo, setNewTodo] = useState("");
@@ -22,16 +23,24 @@ function TodoList() {
     if (!newTodo.trim()) return;
     await service.addTask(newTodo);
     setNewTodo("");
+      swal.fire({title: "המשימה נוצרה!",
+      text: `המשימה "${newTodo}" נוצרה בהצלחה.`,});
     await getTodos();
   }
 
   async function updateCompleted(todo, isComplete) {
     await service.setCompleted(todo.id, isComplete);
+    swal.fire({
+      title: "המשימה עודכנה!",
+      text: `המשימה "${todo.name}" סומנה כ-${isComplete ? "הושלמה" : "לא הושלמה"}.`,  });
     await getTodos();
   }
 
   async function deleteTodo(id) {
     await service.deleteTask(id);
+    swal.fire({
+      title: "המשימה נמחקה!",
+      text: `המשימה עם מזהה ${id} נמחקה בהצלחה.`,});
     await getTodos();
   }
 
@@ -59,7 +68,7 @@ function TodoList() {
 
       <section className="todoapp">
         <header className="header">
-          <h1>todo</h1>
+          <h1>המשימות שלי</h1>
           <form onSubmit={createTodo}>
             <input 
               className="new-todo" 
