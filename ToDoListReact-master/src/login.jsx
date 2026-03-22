@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import service from './service';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function Login({ onLogin }) {
   const [username, setUsername] = useState('');
@@ -15,7 +16,10 @@ function Login({ onLogin }) {
   try {
     console.log("מנסה להתחבר...");
     await service.login(username, password);
-    
+    Swal.fire({
+      title: "התחברות הצליחה!",
+      text: `ברוך הבא, ${username}!`,
+    }); 
     console.log("התחברות הצליחה, מעדכן סטייט ומנווט...");
     onLogin(); 
     navigate('/'); 

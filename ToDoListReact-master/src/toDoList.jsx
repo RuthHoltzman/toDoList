@@ -24,7 +24,7 @@ function TodoList() {
     await service.addTask(newTodo);
     setNewTodo("");
       swal.fire({title: "המשימה נוצרה!",
-      text: `המשימה "${newTodo}" נוצרה בהצלחה.`,});
+      text: `המשימה ${newTodo} נוצרה בהצלחה.`,});
     await getTodos();
   }
 
@@ -32,7 +32,7 @@ function TodoList() {
     await service.setCompleted(todo.id, isComplete);
     swal.fire({
       title: "המשימה עודכנה!",
-      text: `המשימה "${todo.name}" סומנה כ-${isComplete ? "הושלמה" : "לא הושלמה"}.`,  });
+      text: `המשימה ${todo.name} סומנה כ-${isComplete ? "הושלמה" : "לא הושלמה"}.`,  });
     await getTodos();
   }
 

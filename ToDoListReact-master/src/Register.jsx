@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import service from './service';
 import { useNavigate, Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -12,7 +13,10 @@ function Register() {
     e.preventDefault();
     try {
       await service.register(username, password);
-      alert("נרשמת בהצלחה! עכשיו אפשר להתחבר.");
+      Swal.fire({
+        title: "ההרשמה הצליחה!",
+        text: `המשתמש ${username} נרשם בהצלחה. עכשיו תוכל להתחבר.`,
+      });
       navigate('/login'); // אחרי הרשמה עוברים להתחברות
     } catch (err) {
       setError('שגיאה בהרשמה. אולי שם המשתמש כבר תפוס?');
